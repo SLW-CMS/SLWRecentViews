@@ -1,0 +1,159 @@
+#visitor-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Courier New', monospace; /* Hacker stili */
+    font-size: 12px;
+    color: #00ff00; /* Yeşil renk */
+}
+
+#visitor-logs-table th, #visitor-logs-table td {
+    border: none; /* Tablo sınırlarını kaldır */
+    padding: 4px;
+}
+
+#visitor-logs-table tbody {
+    display: block;
+    max-height: 150px; /* Tabloyu 10 satırla sınırlayacak şekilde kaydırma */
+    overflow-y: scroll;
+}
+
+#visitor-logs-table tr {
+    display: block;
+    width: 100%;
+}
+
+#visitor-logs-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Metni kes ve sonuna "..." ekle */
+}
+
+/* Ziyaretçi ismi beyaz, yaptığı işlem kırmızı */
+#visitor-logs-table span {
+    color: white; /* Ziyaretçi ismi beyaz */
+}
+
+#visitor-logs-table a {
+    color: red; /* Yaptığı işlem kırmızı */
+    text-decoration: none;
+}
+
+#visitor-logs-table a:hover {
+    color: #ffffff; /* Hover sırasında renk değişimi */
+    position: relative;
+}
+
+#visitor-logs-table a:hover::after {
+    content: attr(title); /* Hover sırasında title alanındaki özet gösterilecek */
+    background-color: #202124;
+    color: #00ff00;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: normal;
+    width: 250px;
+    z-index: 10;
+}
+
+/* Hover ile IP adresini göster */
+#visitor-logs-table span[title] {
+    cursor: pointer;
+}
+
+#visitor-logs-table span:hover::after {
+    content: attr(title); /* Hover ile IP adresi göster */
+    background-color: #202124;
+    color: #00ff00;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #202124;
+    color: #00ff00;
+}
+
+body.dark-mode #visitor-logs-table {
+    color: #00ff00;
+}
+
+/* Light Mode */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-mode #visitor-logs-table {
+    color: #000000;
+}
+
+/* Responsive Design - Mobil Uyumluluk */
+@media only screen and (max-width: 768px) {
+    #visitor-logs-table {
+        font-size: 9px; /* Mobil için daha küçük font */
+    }
+
+    #visitor-logs-table td {
+        white-space: normal; /* Kelimeler taşmasın */
+        word-wrap: break-word;
+    }
+
+    #visitor-logs-table tbody {
+        max-height: 120px; /* Mobilde daha az yüksekliğe sahip tablo */
+    }
+
+    #visitor-logs-table tr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Küçük Ekranlar İçin Ekstra Mobil Uyumluluk */
+@media only screen and (max-width: 480px) {
+    #visitor-logs-table {
+        font-size: 8px; /* Daha küçük ekranlar için font boyutunu küçült */
+    }
+
+    #visitor-logs-table td,
+    #visitor-logs-table span,
+    #visitor-logs-table a {
+        font-size: 9px;
+    }
+
+    #visitor-logs-table tbody {
+        max-height: 100px; /* Küçük ekranlarda daha dar tablo */
+    }
+
+    #visitor-logs-table tr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #visitor-logs-table td {
+        white-space: normal; /* Kelimeler taşmasın */
+        word-wrap: break-word;
+    }
+
+    /* Hover ile IP adresini daha küçük ve uyumlu yap */
+    #visitor-logs-table span:hover::after {
+        font-size: 9px;
+        padding: 3px;
+    }
+
+    /* Hover sırasında özet baloncuğunu küçült */
+    #visitor-logs-table a:hover::after {
+        font-size: 9px;
+        padding: 3px;
+        width: 200px;
+    }
+}
